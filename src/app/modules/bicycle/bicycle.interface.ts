@@ -8,5 +8,5 @@ export type TBicycle = {
   inStock: boolean;
   createdAt?: Date;
   updatedAt?: Date;
-  isDeleted?: Boolean;
+  isDeleted?: boolean;
 };
