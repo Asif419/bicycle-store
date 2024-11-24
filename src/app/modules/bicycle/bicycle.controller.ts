@@ -26,6 +26,7 @@ const createBicycle = async (req: Request, res: Response) => {
       success: false,
       message: 'Something went wrong',
       error: err,
+      // zodErr.errors.map((e: any) => e.message).join(', '),
     });
   }
 };
@@ -85,13 +86,14 @@ const getBicycleByID = async (req: Request, res: Response) => {
   } catch (err: any) {
     res.status(500).json({
       success: false,
-      message: 'Something went wrong',
+      message: 'Bicycle not found',
       error: err,
     });
   }
 };
 
 const updateBicycleByID = async (req: Request, res: Response) => {
+  let responseSent = false;
   try {
     const productID = req.params.productID;
     const bicycleData = req.body;
@@ -109,37 +111,55 @@ const updateBicycleByID = async (req: Request, res: Response) => {
         success: false,
         message: 'Bicycle not found or already deleted.',
       });
+      responseSent = true;
     }
 
-    res.status(200).json({
-      message: 'Bicycle updated successfully',
-      success: true,
-      data: result,
-    });
+    if (!responseSent) {
+      res.status(200).json({
+        message: 'Bicycle updated successfully',
+        success: true,
+        data: result,
+      });
+    }
   } catch (err: any) {
     res.status(500).json({
       success: false,
-      message: 'Something went wrong',
-      error: err,
+      message: 'Bicycle not found',
     });
   }
 };
 
 const deleteBicycleByID = async (req: Request, res: Response) => {
+  let responseSent = false;
   try {
     const productID = req.params.productID;
 
-    await bicycleServices.deleteBicycleFromDB(productID);
+    const result = await bicycleServices.deleteBicycleFromDB(productID);
+    console.log(result);
 
-    res.status(200).json({
-      message: 'Bicycle deleted successfully',
-      success: true,
-    });
-  } catch (err: any) {
+    if (result.modifiedCount == 0 && result.matchedCount >= 1) {
+      res.status(400).json({
+        message: 'Bicycle already deleted',
+        success: true,
+      });
+      responseSent = true;
+    }
+
+    if (!responseSent && result.modifiedCount == 0) {
+      res.status(500).json({
+        message: 'Bicycle already delete once!',
+        success: false,
+      });
+    } else {
+      res.status(200).json({
+        message: 'Bicycle deleted successfully',
+        success: true,
+      });
+    }
+  } catch (err) {
     res.status(500).json({
       success: false,
-      message: 'Something went wrong',
-      error: err,
+      message: `Cycle can't found or already deleted`,
     });
   }
 };

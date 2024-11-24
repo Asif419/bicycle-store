@@ -36,7 +36,7 @@ const updateBicycleByID = async (
 
 const deleteBicycleFromDB = async (productID: string) => {
   const result = await Bicycle.updateOne(
-    { _id: { $eq: productID } },
+    { _id: { $eq: productID }, isDeleted: { $ne: true } },
     { isDeleted: true },
   );
   return result;
