@@ -17,8 +17,28 @@ const searchBicyclesFromDB = async (term: string) => {
   return result;
 };
 
-const getBicycleByID = async (bicycleID: string) => {
-  const result = await Bicycle.findById(bicycleID);
+const getBicycleByID = async (productID: string) => {
+  const result = await Bicycle.findById(productID);
+  return result;
+};
+
+const updateBicycleByID = async (
+  productID: string,
+  bicycleData: Partial<TBicycle>,
+) => {
+  const result = await Bicycle.findOneAndUpdate(
+    { _id: { $eq: productID } },
+    { $set: bicycleData },
+    { new: true },
+  );
+  return result;
+};
+
+const deleteBicycleFromDB = async (productID: string) => {
+  const result = await Bicycle.updateOne(
+    { _id: { $eq: productID } },
+    { isDeleted: true },
+  );
   return result;
 };
 
@@ -26,4 +46,6 @@ export const bicycleServices = {
   createBicycleIntoDB,
   searchBicyclesFromDB,
   getBicycleByID,
+  updateBicycleByID,
+  deleteBicycleFromDB,
 };

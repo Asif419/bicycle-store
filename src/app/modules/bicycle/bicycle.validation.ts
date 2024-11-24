@@ -10,6 +10,9 @@ const bicycleValidationSchema = z.object({
   inStock: z.boolean(),
   createdAt: z.date().optional(),
   updatedAt: z.date().optional(),
+  isDeleted: z.boolean().optional(),
 });
 
-export default bicycleValidationSchema;
+const partialBicycleValidationSchema = bicycleValidationSchema.partial();
+
+export { bicycleValidationSchema, partialBicycleValidationSchema };

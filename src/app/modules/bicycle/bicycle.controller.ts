@@ -1,15 +1,18 @@
 import { Request, Response } from 'express';
-import bicycleValidationSchema from './bicycle.validaiton';
+import {
+  bicycleValidationSchema,
+  partialBicycleValidationSchema,
+} from './bicycle.validation';
 import { bicycleServices } from './bicycle.service';
 import { TBicycle } from './bicycle.interface';
+import { string } from 'zod';
 
 const createBicycle = async (req: Request, res: Response) => {
   try {
-    const { bicycle: bicycleData } = req.body;
+    const bicycleData = req.body;
 
     // zod validation
     const zodPerseBicycle = bicycleValidationSchema.parse(bicycleData);
-    // console.log(zodPerseBicycle);
 
     const result = await bicycleServices.createBicycleIntoDB(zodPerseBicycle);
 
@@ -21,13 +24,15 @@ const createBicycle = async (req: Request, res: Response) => {
   } catch (err: any) {
     res.status(500).json({
       success: false,
-      message: err.message || 'Something went wrong',
+      message: 'Something went wrong',
       error: err,
     });
   }
 };
 
 const getBicycles = async (req: Request, res: Response) => {
+  let responseSent = false;
+
   try {
     const searchTerm = req.query.searchTerm as string;
 
@@ -36,19 +41,32 @@ const getBicycles = async (req: Request, res: Response) => {
         success: false,
         message: 'Search term is required',
       });
+      responseSent = true;
     }
 
     const result = await bicycleServices.searchBicyclesFromDB(searchTerm);
 
-    res.status(200).json({
-      message: 'Bicycles retrieved successfully',
-      success: true,
-      data: result,
-    });
+    // Check if no bicycles were found
+    if (!responseSent) {
+      if (result.length === 0) {
+        res.status(404).json({
+          message: 'No bicycles found matching the search term.',
+          success: false,
+        });
+        responseSent = true;
+      }
+    }
+    if (!responseSent) {
+      res.status(200).json({
+        message: 'Bicycles retrieved successfully',
+        success: true,
+        data: result,
+      });
+    }
   } catch (err: any) {
     res.status(500).json({
       success: false,
-      message: err.message || 'Something went wrong',
+      message: 'Something went wrong',
       error: err,
     });
   }
@@ -56,10 +74,8 @@ const getBicycles = async (req: Request, res: Response) => {
 
 const getBicycleByID = async (req: Request, res: Response) => {
   try {
-    const bicycleID = req.params.bicycleID;
-    console.log(bicycleID);
-
-    const result = await bicycleServices.getBicycleByID(bicycleID);
+    const productID = req.params.productID;
+    const result = await bicycleServices.getBicycleByID(productID);
 
     res.status(200).json({
       message: 'Bicycle retrieved successfully',
@@ -69,7 +85,60 @@ const getBicycleByID = async (req: Request, res: Response) => {
   } catch (err: any) {
     res.status(500).json({
       success: false,
-      message: err.message || 'Something went wrong',
+      message: 'Something went wrong',
+      error: err,
+    });
+  }
+};
+
+const updateBicycleByID = async (req: Request, res: Response) => {
+  try {
+    const productID = req.params.productID;
+    const bicycleData = req.body;
+
+    // zod validation
+    const zodPerseBicycle = partialBicycleValidationSchema.parse(bicycleData);
+
+    const result = await bicycleServices.updateBicycleByID(
+      productID,
+      zodPerseBicycle,
+    );
+
+    if (result === null) {
+      res.status(404).json({
+        success: false,
+        message: 'Bicycle not found or already deleted.',
+      });
+    }
+
+    res.status(200).json({
+      message: 'Bicycle updated successfully',
+      success: true,
+      data: result,
+    });
+  } catch (err: any) {
+    res.status(500).json({
+      success: false,
+      message: 'Something went wrong',
+      error: err,
+    });
+  }
+};
+
+const deleteBicycleByID = async (req: Request, res: Response) => {
+  try {
+    const productID = req.params.productID;
+
+    await bicycleServices.deleteBicycleFromDB(productID);
+
+    res.status(200).json({
+      message: 'Bicycle deleted successfully',
+      success: true,
+    });
+  } catch (err: any) {
+    res.status(500).json({
+      success: false,
+      message: 'Something went wrong',
       error: err,
     });
   }
@@ -79,4 +148,6 @@ export const bicycleControllers = {
   createBicycle,
   getBicycles,
   getBicycleByID,
+  updateBicycleByID,
+  deleteBicycleByID,
 };
