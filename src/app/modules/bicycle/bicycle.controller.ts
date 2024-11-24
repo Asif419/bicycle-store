@@ -26,7 +26,6 @@ const createBicycle = async (req: Request, res: Response) => {
       success: false,
       message: 'Something went wrong',
       error: err,
-      // zodErr.errors.map((e: any) => e.message).join(', '),
     });
   }
 };
@@ -74,19 +73,30 @@ const getBicycles = async (req: Request, res: Response) => {
 };
 
 const getBicycleByID = async (req: Request, res: Response) => {
+  let responseSent = false;
   try {
     const productID = req.params.productID;
     const result = await bicycleServices.getBicycleByID(productID);
+    console.log(result);
 
-    res.status(200).json({
-      message: 'Bicycle retrieved successfully',
-      success: true,
-      data: result,
-    });
+    if (result === null) {
+      res.status(400).json({
+        success: false,
+        message: 'Bicycle not found',
+      });
+      responseSent = true;
+    }
+    if (!responseSent) {
+      res.status(200).json({
+        message: 'Bicycle retrieved successfully',
+        success: true,
+        data: result,
+      });
+    }
   } catch (err: any) {
     res.status(500).json({
       success: false,
-      message: 'Bicycle not found',
+      message: 'Provide Bicycle ID properly',
       error: err,
     });
   }
