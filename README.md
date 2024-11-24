@@ -67,3 +67,109 @@ Each order document in the `orders` collection contains:
     "inStock": true
   }
   ```
+
+  ### 2. **Search Products by Name, Brand, or Type**
+
+- **Method**: `GET`
+- **Endpoint**: `/api/products?searchTerm=Trek`
+- **Description**: Creates a new bicycle entry in the `bicycles` collection.
+
+### 3. **Update a Product**
+
+- **Method**: `PUT`
+- **Endpoint**: `/api/products/:productID`
+- **Description**: Updates the details of a bicycle in the `bicycles` collection..
+
+  ### 4. **Create a Product (Bicycle)**
+
+- **Method**: `POST`
+- **Endpoint**: `/api/products/`
+- **Description**: Creates a new bicycle entry in the `bicycles` collection.
+
+  **Request Body**:
+
+  ```json
+  {
+    "name": "Trek Mountain 5000",
+    "brand": "Trek",
+    "price": 499.99,
+    "type": "Mountain",
+    "description": "An updated description for the Trek Mountain 5000.",
+    "quantity": 15,
+    "inStock": true
+  }
+  ```
+
+  ### 5. **Delete a Product**
+
+- **Method**: `DELETE`
+- **Endpoint**: `/api/products/:productID`
+- **Description**: Deletes a bicycle from the bicycles collection `bicycles` collection.
+
+  **Request Body**:
+
+  ```json
+  {
+    "name": "Trek Mountain 5000",
+    "brand": "Trek",
+    "price": 499.99,
+    "type": "Mountain",
+    "description": "A high-performance mountain bike.",
+    "quantity": 10,
+    "inStock": true
+  }
+  ```
+
+  ### 6. **Create an Order**
+
+- **Method**: `POST`
+- **Endpoint**: `/api/orders/`
+- **Description**: Creates a new order in the `orders` collection.
+
+  **Request Body**:
+
+  ```json
+  {
+    "email": "customer@example.com",
+    "product": "Trek Mountain 5000",
+    "quantity": 2,
+    "totalPrice": 999.98
+  }
+  ```
+
+  ### 7. **Get Revenue**
+
+- **Method**: `GET`
+- **Endpoint**: `/api/orders/revenue`
+- **Description**: Calculates and returns the total revenue from all orders..
+
+  **Request Body**:
+
+  ```json
+  {
+    "name": "Trek Mountain 5000",
+    "brand": "Trek",
+    "price": 499.99,
+    "type": "Mountain",
+    "description": "A high-performance mountain bike.",
+    "quantity": 10,
+    "inStock": true
+  }
+  ```
+
+## Installation Instructions
+
+To set up and run this project locally, follow these steps:
+
+### Prerequisites
+
+- **Node.js** (v14 or higher)
+- **MongoDB** (or MongoDB Atlas for a cloud-based database)
+
+## License
+
+This project is licensed under the Programming Hero License.
+
+## Contact
+
+To connect with me, you can email me at asshah419@gmail.com.
