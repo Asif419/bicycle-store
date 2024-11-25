@@ -144,10 +144,17 @@ const deleteBicycleByID = async (req: Request, res: Response) => {
 
     const result = await bicycleServices.deleteBicycleFromDB(productID);
 
-    res.status(200).json({
-      message: 'Bicycle deleted successfully',
-      success: true,
-    });
+    if (result.modifiedCount > 0) {
+      res.status(200).json({
+        message: 'Bicycle deleted successfully',
+        success: true,
+      });
+    } else {
+      res.status(404).json({
+        message: 'Bicycle not found',
+        success: true,
+      });
+    }
   } catch (err) {
     res.status(500).json({
       success: false,
