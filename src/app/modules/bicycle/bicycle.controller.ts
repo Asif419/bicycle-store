@@ -152,7 +152,7 @@ const deleteBicycleByID = async (req: Request, res: Response) => {
     } else {
       res.status(404).json({
         message: 'Bicycle not found',
-        success: true,
+        success: false,
       });
     }
   } catch (err) {
