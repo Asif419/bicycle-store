@@ -188,7 +188,9 @@ To set up and run this project locally, follow these steps:
 
 ### Prerequisites
 
-- **Node.js** (v14 or higher)
+- **Node.js** (v16 or higher)
+- **npm**
+- **typescript** (global installation recommended)
 - **MongoDB** (or MongoDB Atlas for a cloud-based database)
 
 ### Steps
