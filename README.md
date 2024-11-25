@@ -1,5 +1,18 @@
 # Bicycle-Store API
 
+Welcome to the **Bicycle-Store API**, a RESTful API for managing bicycle products and orders. This API is designed to support functionalities such as creating, updating, deleting, and searching bicycles, as well as managing customer orders and calculating revenue.
+
+## Live Deployment
+
+The API is live and deployed at:
+
+[bicycle-store-v2.vercel.app](https://bicycle-store-v2.vercel.app)
+
+You can access and test the API endpoints using tools like Postman or directly from your frontend application.
+¨
+
+---
+
 ## Description
 
 The **Bicycle-Store API** is a RESTful API built with **Express.js** and **MongoDB** to manage bicycle products and orders for an online bicycle store. The API allows users to create, update, delete, and search bicycle products, as well as track orders and calculate revenue. The API is built using **TypeScript** for type safety, and it integrates several useful libraries such as **Zod** for validation and **Cors** for cross-origin resource sharing.
