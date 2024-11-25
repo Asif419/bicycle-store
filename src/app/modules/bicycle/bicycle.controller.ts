@@ -77,7 +77,6 @@ const getBicycleByID = async (req: Request, res: Response) => {
   try {
     const productID = req.params.productID;
     const result = await bicycleServices.getBicycleByID(productID);
-    console.log(result);
 
     if (result === null) {
       res.status(400).json({
@@ -140,32 +139,15 @@ const updateBicycleByID = async (req: Request, res: Response) => {
 };
 
 const deleteBicycleByID = async (req: Request, res: Response) => {
-  let responseSent = false;
   try {
     const productID = req.params.productID;
 
     const result = await bicycleServices.deleteBicycleFromDB(productID);
-    console.log(result);
 
-    if (result.modifiedCount == 0 && result.matchedCount >= 1) {
-      res.status(400).json({
-        message: 'Bicycle already deleted',
-        success: true,
-      });
-      responseSent = true;
-    }
-
-    if (!responseSent && result.modifiedCount == 0) {
-      res.status(500).json({
-        message: 'Bicycle already delete once!',
-        success: false,
-      });
-    } else {
-      res.status(200).json({
-        message: 'Bicycle deleted successfully',
-        success: true,
-      });
-    }
+    res.status(200).json({
+      message: 'Bicycle deleted successfully',
+      success: true,
+    });
   } catch (err) {
     res.status(500).json({
       success: false,
