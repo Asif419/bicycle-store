@@ -4,11 +4,7 @@ exports.Order = void 0;
 const mongoose_1 = require("mongoose");
 const orderSchema = new mongoose_1.Schema({
     email: { type: String, required: [true, 'email is required'] },
-    product: {
-        type: String,
-        ref: 'Bicycle',
-        required: [true, 'product is required'],
-    },
+    product: { type: mongoose_1.Schema.Types.ObjectId, ref: 'Bicycle', required: true },
     quantity: { type: Number, required: [true, 'quantity is required'], min: 1 },
     totalPrice: {
         type: Number,

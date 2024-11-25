@@ -29,24 +29,27 @@ const createOrderIntoDB = (orderData) => __awaiter(void 0, void 0, void 0, funct
     return result;
 });
 const getRevenueFromDB = () => __awaiter(void 0, void 0, void 0, function* () {
+    yield order_model_1.Order.updateMany({ product: { $type: 'string' } }, [
+        { $set: { product: { $toObjectId: '$product' } } },
+    ]);
     const result = yield order_model_1.Order.aggregate([
         {
             $lookup: {
                 from: 'bicycles',
                 localField: 'product',
                 foreignField: '_id',
-                as: 'bicycleDetails',
+                as: 'productDetails',
             },
         },
         {
-            $unwind: '$bicycleDetails',
+            $unwind: '$productDetails',
         },
         {
             $group: {
                 _id: null,
                 totalRevenue: {
                     $sum: {
-                        $multiply: ['$bicycleDetails.price', '$quantity'],
+                        $multiply: ['$productDetails.price', '$quantity'],
                     },
                 },
             },

@@ -2,7 +2,7 @@ import { Types } from 'mongoose';
 
 export interface TOrder {
   email: string;
-  product: string;
+  product: Types.ObjectId;
   quantity: number;
   totalPrice: number;
   createdAt?: Date;

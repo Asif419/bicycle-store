@@ -20,24 +20,28 @@ const createOrderIntoDB = async (orderData: TOrder) => {
 };
 
 const getRevenueFromDB = async () => {
+  await Order.updateMany({ product: { $type: 'string' } }, [
+    { $set: { product: { $toObjectId: '$product' } } },
+  ]);
+
   const result = await Order.aggregate([
     {
       $lookup: {
         from: 'bicycles',
         localField: 'product',
         foreignField: '_id',
-        as: 'bicycleDetails',
+        as: 'productDetails',
       },
     },
     {
-      $unwind: '$bicycleDetails',
+      $unwind: '$productDetails',
     },
     {
       $group: {
         _id: null,
         totalRevenue: {
           $sum: {
-            $multiply: ['$bicycleDetails.price', '$quantity'],
+            $multiply: ['$productDetails.price', '$quantity'],
           },
         },
       },
