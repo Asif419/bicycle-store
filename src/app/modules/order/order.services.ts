@@ -20,10 +20,6 @@ const createOrderIntoDB = async (orderData: TOrder) => {
 };
 
 const getRevenueFromDB = async () => {
-  await Order.updateMany({ product: { $type: 'string' } }, [
-    { $set: { product: { $toObjectId: '$product' } } },
-  ]);
-
   const result = await Order.aggregate([
     {
       $lookup: {

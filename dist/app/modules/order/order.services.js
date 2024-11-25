@@ -29,9 +29,6 @@ const createOrderIntoDB = (orderData) => __awaiter(void 0, void 0, void 0, funct
     return result;
 });
 const getRevenueFromDB = () => __awaiter(void 0, void 0, void 0, function* () {
-    yield order_model_1.Order.updateMany({ product: { $type: 'string' } }, [
-        { $set: { product: { $toObjectId: '$product' } } },
-    ]);
     const result = yield order_model_1.Order.aggregate([
         {
             $lookup: {
