@@ -184,22 +184,23 @@ To set up and run this project locally, follow these steps:
 
 3. **Install dependencies:**
 
-````bash
-npm install
+   ```bash
+   npm install
+   ```
 
 4. **Create a `.env` file in the root directory of your project and add your environment variables:**
-```makefile
- PORT =
- DATABASE_URL =
- NODE_ENV = development
-````
+
+   ```makefile
+     PORT =
+     DATABASE_URL =
+     NODE_ENV = development
+   ```
 
 5. **Run the application**
 
-```bash
-  npm start
-
-
+   ```bash
+     npm start
+   ```
 
 ## License
 
@@ -208,4 +209,7 @@ This project is licensed under the Programming Hero License.
 ## Contact
 
 To connect with me, you can email me at asshah419@gmail.com.
+
+```
+
 ```
