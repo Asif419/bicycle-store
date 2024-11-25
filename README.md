@@ -68,7 +68,7 @@ Each order document in the `orders` collection contains:
   }
   ```
 
-  ### 2. **Search Products by Name, Brand, or Type**
+### 2. **Search Products by Name, Brand, or Type**
 
 - **Method**: `GET`
 - **Endpoint**: `/api/products?searchTerm=Trek`
@@ -80,7 +80,7 @@ Each order document in the `orders` collection contains:
 - **Endpoint**: `/api/products/:productID`
 - **Description**: Updates the details of a bicycle in the `bicycles` collection..
 
-  ### 4. **Create a Product (Bicycle)**
+### 4. **Create a Product (Bicycle)**
 
 - **Method**: `POST`
 - **Endpoint**: `/api/products/`
@@ -100,7 +100,7 @@ Each order document in the `orders` collection contains:
   }
   ```
 
-  ### 5. **Delete a Product**
+### 5. **Delete a Product**
 
 - **Method**: `DELETE`
 - **Endpoint**: `/api/products/:productID`
@@ -120,7 +120,7 @@ Each order document in the `orders` collection contains:
   }
   ```
 
-  ### 6. **Create an Order**
+### 6. **Create an Order**
 
 - **Method**: `POST`
 - **Endpoint**: `/api/orders/`
@@ -137,7 +137,7 @@ Each order document in the `orders` collection contains:
   }
   ```
 
-  ### 7. **Get Revenue**
+### 7. **Get Revenue**
 
 - **Method**: `GET`
 - **Endpoint**: `/api/orders/revenue`
@@ -166,6 +166,41 @@ To set up and run this project locally, follow these steps:
 - **Node.js** (v14 or higher)
 - **MongoDB** (or MongoDB Atlas for a cloud-based database)
 
+### Steps
+
+1. **Clone the repository:**
+
+   ```bash
+   git clone https://github.com/your-username/bicycle-store-api.git
+
+   ```
+
+2. **Navigate to the project directory:**
+
+   ```bash
+   cd bicycle-store-api
+
+   ```
+
+3. **Install dependencies:**
+
+````bash
+npm install
+
+4. **Create a `.env` file in the root directory of your project and add your environment variables:**
+```makefile
+ PORT =
+ DATABASE_URL =
+ NODE_ENV = development
+````
+
+5. **Run the application**
+
+```bash
+  npm start
+
+
+
 ## License
 
 This project is licensed under the Programming Hero License.
@@ -173,3 +208,4 @@ This project is licensed under the Programming Hero License.
 ## Contact
 
 To connect with me, you can email me at asshah419@gmail.com.
+```
