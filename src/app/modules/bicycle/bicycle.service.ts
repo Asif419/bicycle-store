@@ -18,8 +18,11 @@ const searchBicyclesFromDB = async (term: string) => {
 };
 
 const getBicycleByID = async (productID: string) => {
-  const result = await Bicycle.findById(productID);
-  return result;
+  const bicycle = await Bicycle.findById(productID);
+  if (bicycle?.isDeleted) {
+    return null;
+  }
+  return bicycle;
 };
 
 const updateBicycleByID = async (

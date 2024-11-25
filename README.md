@@ -61,7 +61,7 @@ Each order document in the `orders` collection contains:
 - **email**: Email of the customer placing the order
 - **product**: The \_id (reference of \_id from bicycles collection)
 - **quantity**: Quantity of the product ordered
-- **totalPrice**: Total price of the order (calculated as `quantity * price`)
+- **totalPrice**: Total price of the order
 - **createdAt** (Optional): Timestamp of when the order was created
 - **updatedAt** (Optional): Timestamp of when the order was last updated
 

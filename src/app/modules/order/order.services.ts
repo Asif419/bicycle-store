@@ -4,7 +4,7 @@ import { Order } from './order.model';
 
 const createOrderIntoDB = async (orderData: TOrder) => {
   const bicycle = await Bicycle.findById(orderData.product);
-  if (!bicycle) {
+  if (!bicycle || bicycle.isDeleted) {
     throw new Error('Bicycle not Found');
   }
   if (bicycle.quantity < orderData.quantity) {

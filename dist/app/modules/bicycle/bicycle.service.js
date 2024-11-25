@@ -26,8 +26,11 @@ const searchBicyclesFromDB = (term) => __awaiter(void 0, void 0, void 0, functio
     return result;
 });
 const getBicycleByID = (productID) => __awaiter(void 0, void 0, void 0, function* () {
-    const result = yield bicycle_model_1.Bicycle.findById(productID);
-    return result;
+    const bicycle = yield bicycle_model_1.Bicycle.findById(productID);
+    if (bicycle === null || bicycle === void 0 ? void 0 : bicycle.isDeleted) {
+        return null;
+    }
+    return bicycle;
 });
 const updateBicycleByID = (productID, bicycleData) => __awaiter(void 0, void 0, void 0, function* () {
     const result = yield bicycle_model_1.Bicycle.findOneAndUpdate({ _id: { $eq: productID } }, { $set: bicycleData }, { new: true });

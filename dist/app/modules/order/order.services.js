@@ -14,7 +14,7 @@ const bicycle_model_1 = require("../bicycle/bicycle.model");
 const order_model_1 = require("./order.model");
 const createOrderIntoDB = (orderData) => __awaiter(void 0, void 0, void 0, function* () {
     const bicycle = yield bicycle_model_1.Bicycle.findById(orderData.product);
-    if (!bicycle) {
+    if (!bicycle || bicycle.isDeleted) {
         throw new Error('Bicycle not Found');
     }
     if (bicycle.quantity < orderData.quantity) {
