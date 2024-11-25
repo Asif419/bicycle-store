@@ -141,7 +141,7 @@ const deleteBicycleByID = (req, res) => __awaiter(void 0, void 0, void 0, functi
         else {
             res.status(404).json({
                 message: 'Bicycle not found',
-                success: true,
+                success: false,
             });
         }
     }

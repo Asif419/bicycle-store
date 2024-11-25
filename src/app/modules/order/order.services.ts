@@ -8,7 +8,7 @@ const createOrderIntoDB = async (orderData: TOrder) => {
     throw new Error('Bicycle not Found');
   }
   if (bicycle.quantity < orderData.quantity) {
-    throw new Error('Insufficient stock for the bicycle.');
+    throw new Error('Insufficient stock for the bicycle');
   }
   bicycle.quantity -= orderData.quantity;
   if (bicycle.quantity === 0) {
@@ -49,7 +49,7 @@ const getRevenueFromDB = async () => {
       },
     },
   ]);
-  
+
   return result.length > 0 ? result[0].totalRevenue : 0;
 };
 

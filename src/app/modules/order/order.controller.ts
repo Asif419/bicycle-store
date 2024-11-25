@@ -18,25 +18,25 @@ const createOrder = async (req: Request, res: Response) => {
       data: result,
     });
   } catch (err: any) {
-    if (err.message === 'Bicycle not Found.' && !setResponse) {
+    if (err.message === 'Bicycle not Found' && !setResponse) {
       res.status(404).json({
         success: false,
         message: 'Bicycle not found in the inventory.',
       });
       setResponse = true;
     } else if (
-      err.message === 'Insufficient stock for the bicycle.' &&
+      err.message === 'Insufficient stock for the bicycle' &&
       !setResponse
     ) {
       res.status(400).json({
         success: false,
-        message: 'Insufficient stock to fulfill the order.',
+        message: 'Insufficient stock to fulfill the order',
       });
       setResponse = true;
-    } else if (setResponse) {
+    } else if (!setResponse) {
       res.status(500).json({
         success: false,
-        message: err.message || 'Something went wrong',
+        message: 'Something went wrong',
         error: err,
       });
     }
