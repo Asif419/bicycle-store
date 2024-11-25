@@ -15,6 +15,9 @@ The **Bicycle-Store API** is a RESTful API built with **Express.js** and **Mongo
 - **Dotenv** – Environment variable management
 - **ESLint** – Linter for JavaScript and TypeScript
 - **Prettier** – Code formatter for consistent code style
+  ¨
+
+---
 
 ## DATASET
 
@@ -45,6 +48,10 @@ Each order document in the `orders` collection contains:
 - **totalPrice**: Total price of the order (calculated as `quantity * price`)
 - **createdAt** (Optional): Timestamp of when the order was created
 - **updatedAt** (Optional): Timestamp of when the order was last updated
+
+¨
+
+---
 
 ## API Endpoints
 
@@ -157,6 +164,8 @@ Each order document in the `orders` collection contains:
   }
   ```
 
+## ¨
+
 ## Installation Instructions
 
 To set up and run this project locally, follow these steps:
@@ -171,21 +180,20 @@ To set up and run this project locally, follow these steps:
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/your-username/bicycle-store-api.git
+   git clone https://github.com/Asif419/bicycle-store.git
 
    ```
 
 2. **Navigate to the project directory:**
 
    ```bash
-   cd bicycle-store-api
-
+      cd bicycle-store
    ```
 
 3. **Install dependencies:**
 
    ```bash
-   npm install
+      npm install
    ```
 
 4. **Create a `.env` file in the root directory of your project and add your environment variables:**
@@ -202,6 +210,8 @@ To set up and run this project locally, follow these steps:
      npm start
    ```
 
+## ¨
+
 ## License
 
 This project is licensed under the Programming Hero License.
@@ -209,7 +219,3 @@ This project is licensed under the Programming Hero License.
 ## Contact
 
 To connect with me, you can email me at asshah419@gmail.com.
-
-```
-
-```
