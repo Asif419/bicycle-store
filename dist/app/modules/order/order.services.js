@@ -18,7 +18,7 @@ const createOrderIntoDB = (orderData) => __awaiter(void 0, void 0, void 0, funct
         throw new Error('Bicycle not Found');
     }
     if (bicycle.quantity < orderData.quantity) {
-        throw new Error('Insufficient stock for the bicycle.');
+        throw new Error('Insufficient stock for the bicycle');
     }
     bicycle.quantity -= orderData.quantity;
     if (bicycle.quantity === 0) {

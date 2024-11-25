@@ -4,13 +4,13 @@ exports.Bicycle = void 0;
 const mongoose_1 = require("mongoose");
 // creating a schema for bicycle
 const bicycleSchema = new mongoose_1.Schema({
-    name: { type: String, required: true },
-    brand: { type: String, required: true },
-    price: { type: Number, required: true },
-    type: { type: String, required: true },
-    description: { type: String, required: true },
-    quantity: { type: Number, required: true },
-    inStock: { type: Boolean, required: true },
+    name: { type: String, required: [true, 'Name is required'] },
+    brand: { type: String, required: [true, 'Brand is required'] },
+    price: { type: Number, required: [true, 'Price is required'] },
+    type: { type: String, required: [true, 'Type is required'] },
+    description: { type: String, required: [true, 'Description is required'] },
+    quantity: { type: Number, required: [true, 'Quantity is required'] },
+    inStock: { type: Boolean, required: [true, 'inStock is required'] },
     isDeleted: { type: Boolean, default: false },
 }, { timestamps: true });
 // pre find Middleware
