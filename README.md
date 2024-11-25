@@ -95,31 +95,26 @@ Each order document in the `orders` collection contains:
 
 - **Method**: `GET`
 - **Endpoint**: `/api/products?searchTerm=Trek`
-- **Description**: Creates a new bicycle entry in the `bicycles` collection.
+- **Description**: Get some categorical bicycles from the collection.
 
-### 3. **Update a Product**
+### 3. **Get a Product (Bicycle)**
+
+- **Method**: `GET`
+- **Endpoint**: `/api/products/:productID`
+- **Description**: Get a specific bicycle from the collection.
+
+### 4. **Update a Product**
 
 - **Method**: `PUT`
 - **Endpoint**: `/api/products/:productID`
 - **Description**: Updates the details of a bicycle in the `bicycles` collection..
 
-### 4. **Create a Product (Bicycle)**
-
-- **Method**: `POST`
-- **Endpoint**: `/api/products/`
-- **Description**: Creates a new bicycle entry in the `bicycles` collection.
-
   **Request Body**:
 
   ```json
   {
-    "name": "Trek Mountain 5000",
-    "brand": "Trek",
-    "price": 499.99,
-    "type": "Mountain",
-    "description": "An updated description for the Trek Mountain 5000.",
-    "quantity": 15,
-    "inStock": true
+    "price": 4000,
+    "quantity": 20
   }
   ```
 
@@ -127,21 +122,7 @@ Each order document in the `orders` collection contains:
 
 - **Method**: `DELETE`
 - **Endpoint**: `/api/products/:productID`
-- **Description**: Deletes a bicycle from the bicycles collection `bicycles` collection.
-
-  **Request Body**:
-
-  ```json
-  {
-    "name": "Trek Mountain 5000",
-    "brand": "Trek",
-    "price": 499.99,
-    "type": "Mountain",
-    "description": "A high-performance mountain bike.",
-    "quantity": 10,
-    "inStock": true
-  }
-  ```
+- **Description**: Deletes a bicycle from the `bicycles` collection.
 
 ### 6. **Create an Order**
 
@@ -165,20 +146,6 @@ Each order document in the `orders` collection contains:
 - **Method**: `GET`
 - **Endpoint**: `/api/orders/revenue`
 - **Description**: Calculates and returns the total revenue from all orders..
-
-  **Request Body**:
-
-  ```json
-  {
-    "name": "Trek Mountain 5000",
-    "brand": "Trek",
-    "price": 499.99,
-    "type": "Mountain",
-    "description": "A high-performance mountain bike.",
-    "quantity": 10,
-    "inStock": true
-  }
-  ```
 
 ¨
 
