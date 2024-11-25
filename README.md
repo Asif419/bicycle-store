@@ -41,6 +41,7 @@ The database consists of two main collections: **bicycles** and **orders**.
 
 Each bicycle document in the `bicycles` collection contains the following fields:
 
+- **\_id**: Product ID (unique)
 - **name**: Name of the bicycle
 - **brand**: Brand of the bicycle
 - **price**: Price of the bicycle
@@ -56,8 +57,9 @@ Each bicycle document in the `bicycles` collection contains the following fields
 
 Each order document in the `orders` collection contains:
 
+- **\_id**: Individuals orders ID (unique)
 - **email**: Email of the customer placing the order
-- **product**: The bicycle product ordered
+- **product**: The \_id (reference of \_id from bicycles collection)
 - **quantity**: Quantity of the product ordered
 - **totalPrice**: Total price of the order (calculated as `quantity * price`)
 - **createdAt** (Optional): Timestamp of when the order was created
