@@ -15,7 +15,8 @@ The **Bicycle-Store API** is a RESTful API built with **Express.js** and **Mongo
 - **Dotenv** – Environment variable management
 - **ESLint** – Linter for JavaScript and TypeScript
 - **Prettier** – Code formatter for consistent code style
-  ¨
+
+¨
 
 ---
 
@@ -164,7 +165,9 @@ Each order document in the `orders` collection contains:
   }
   ```
 
-## ¨
+¨
+
+---
 
 ## Installation Instructions
 
@@ -210,7 +213,9 @@ To set up and run this project locally, follow these steps:
      npm start
    ```
 
-## ¨
+¨
+
+---
 
 ## License
 
